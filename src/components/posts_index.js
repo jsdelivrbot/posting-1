@@ -23,6 +23,7 @@ class PostsIndex extends Component {
 
   render() {
     return (
+      //html에선 ancher tag를 사용하는데 react-router에선 link tag사용!
       <div>
         <div className="text-xs-right">
           <Link className="btn btn-primary" to="/posts/new">
