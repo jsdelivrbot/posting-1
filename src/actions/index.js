@@ -17,9 +17,10 @@ export function fetchPosts() {
 }
 
 
-export function createPost(values) {
-  const request = axios.post(`${ROOT_URL}/posts${API_KEY}`, values);
-
+export function createPost(values, callback) {
+  const request = axios.post(`${ROOT_URL}/posts${API_KEY}`, values)
+    .then(() => callback());
+//axios가 성공적으로 끝나면 callback함수를 호출. 이게 promise쓴거래
   return {
     type: CREATE_POST,
     payload: request
