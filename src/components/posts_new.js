@@ -4,7 +4,9 @@ import { Field, reduxForm } from 'redux-form';
 
 class PostsNew extends Component {
 
-  renderTitleField(field) {
+  renderField(field) {
+    //비슷한 함수가 반복되니까 중복되게 안쓰려고 고칠거임
+
     //return jsx
 
     //field라는 object에는 event handler가 포함되어 있어서
@@ -12,12 +14,13 @@ class PostsNew extends Component {
     //그래서 Field랑 연결되는거
 
     return (
-      <div>
+      <div className="form-group">
+        <label>{field.label}</label>
         <input
+          className="form-control"
           {...field.input}
         />
       </div>
-
     );
   }
 
@@ -26,8 +29,19 @@ class PostsNew extends Component {
     return (
       <form>
         <Field
+          label="Title for Post"
           name="title"
-          component={this.renderTitleField}
+          component={this.renderField}
+        />
+        <Field
+          label="Tags"
+          name="tags"
+          component={this.renderField}
+        />
+        <Field
+          label="Show your love!"
+          name="content"
+          component={this.renderField}
         />
       </form>
     );
