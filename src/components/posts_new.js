@@ -10,15 +10,19 @@ class PostsNew extends Component {
     //field라는 object에는 event handler가 포함되어 있어서
     //이 event handler는 return할 jsx에 wired up될것임.
     //그래서 Field랑 연결되는거
+    const { meta: { touched, error } } = field;
+    const className = `form-group ${touched && error ? 'has-danger' : ''}`;
 
     return (     //return jsx
-      <div className="form-group">
+      <div className={className}>
         <label>{field.label}</label>
         <input
           className="form-control"
           {...field.input}
         />
-        {field.meta.error}
+        <div className="text-help">
+          {touched ? error : ''}
+        </div>
       </div>
     );
   }
