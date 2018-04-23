@@ -26,10 +26,17 @@ class PostsNew extends Component {
   //validate function에 있는 errors의 property의 name과 같은 field의 property가 있으면 error띄워줌
   //foeld.name이 바뀌면 validate 함수의 error.name도 바뀌어야 함
 
+  onSubmit(values) {
+    //this === component
+    console.log(values);
+  }
 
   render() {
+    const { handleSubmit } = this.props;
+
+//form onSubmit={handleSubmit(this.onSubmit.bind(this))}> 이 문장 이해하는거 어려워
     return (
-      <form>
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <Field
           label="Title for Post"
           name="title"
@@ -45,6 +52,7 @@ class PostsNew extends Component {
           name="content"
           component={this.renderField}
         />
+        <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     );
   }
@@ -58,10 +66,10 @@ function validate(values) {
     errors.title = "Enter a title!";
   }
   if (!values.categories) {
-    errors.categories = "Enter some categories!";
+    errors.categories = "Enter some categories!!";
   }
   if (!values.content) {
-    errors.content = "Enter some content";
+    errors.content = "Enter some content!!!";
   }
   //If errors is empty, the form is fine to submit
   //If errors has any properties, redux form assumes form is invalid
