@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 //reduxForm function helper은 connect helper와 비슷하대. reducer랑 connect
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createPost } from '../actions';
 
 class PostsNew extends Component {
 
@@ -33,7 +35,8 @@ class PostsNew extends Component {
 
   onSubmit(values) {
     //this === component
-    console.log(values);
+
+    this.props.createPost(values);
   }
 
   render() {
@@ -85,6 +88,9 @@ function validate(values) {
 export default reduxForm({
   validate,
   form: 'PostsNewForm'
-}) (PostsNew);
-
+}) (
+  connect(null, { createPost }) (PostsNew)
+);
 //위에 쓴 form에 string이 unique해야함.
+//이미 redux form을 connect한 위의 함수에 actionCreator를 같이 combine하기로 함
+//이게 multiple connect ?? helper
