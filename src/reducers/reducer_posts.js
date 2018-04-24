@@ -1,4 +1,3 @@
-
 import _ from 'lodash';
 import { FETCH_POSTS, FETCH_POST } from '../actions';
 
@@ -10,8 +9,9 @@ export default function(state = {}, action) {
       // newState[post.id] = post;
       // return newState;
 
-      //es6
+      //es6 어려워
       return { ...state, [action.payload.data.id]: action.payload.data };
+
     case FETCH_POSTS:
       return _.mapKeys(action.payload.data, 'id');
 
